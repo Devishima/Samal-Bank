@@ -1,0 +1,39 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+    - name: Build archive
+      run: |
+        xcodebuild archive \
+          -project SamalBank.xcodeproj \
+          -scheme SamalBank \
+          -sdk iphoneos \
+          -configuration Release \
+          -archivePath $RUNNER_TEMP/SamalBank.xcarchive \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+
+    - name: Create IPA
+      run: |
+        mkdir -p Payload
+        cp -r $RUNNER_TEMP/SamalBank.xcarchive/Products/Applications/*.app Payload/
+        zip -r SamalBank.ipa Payload/
+
+    - name: Upload IPA
+      uses: actions/upload-artifact@v4
+      with:
+        name: SamalBank-Unsigned-IPA
+        path: SamalBank.ipa
