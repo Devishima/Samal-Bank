@@ -9,7 +9,7 @@ struct TransactionRow: View {
                 Text(tx.date, format: .dateTime.day().month().hour().minute()).font(.caption2).foregroundStyle(.secondary)
             }
             Spacer()
-            Text((tx.kind == .incoming ? "+" : "−") + formatted(tx.amount)).font(.subheadline.monospacedDigit()).foregroundStyle(tx.kind == .incoming ? .green : .primary)
+            Text((tx.kind == .incoming ? "+" : "−") + formatted(tx.amount)).font(.subheadline.monospacedDigit()).foregroundStyle(tx.kind == .incoming ? Color.green : Color.primary)
         }.padding(.horizontal, 14).padding(.vertical, 10)
     }
     private var iconName: String {

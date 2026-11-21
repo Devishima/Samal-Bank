@@ -45,7 +45,7 @@ struct TransferView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(canTransfer ? Color.blue : Color(.secondarySystemFill))
-                            .foregroundStyle(canTransfer ? .white : .secondary)
+                            .foregroundStyle(canTransfer ? Color.white : Color.secondary)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     .disabled(!canTransfer)

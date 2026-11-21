@@ -73,7 +73,7 @@ struct PaymentDetailView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(amountText.isEmpty ? Color(.secondarySystemFill) : Color.blue)
-                    .foregroundStyle(amountText.isEmpty ? .secondary : .white)
+                    .foregroundStyle(amountText.isEmpty ? Color.secondary : Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
             .disabled(amountText.isEmpty)
