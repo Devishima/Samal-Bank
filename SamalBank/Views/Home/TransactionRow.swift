@@ -5,11 +5,11 @@ struct TransactionRow: View {
         HStack(spacing: 12) {
             Image(systemName: iconName).font(.system(size: 18, weight: .semibold)).frame(width: 40, height: 40).background(color.opacity(0.2)).foregroundStyle(color).clipShape(Circle())
             VStack(alignment: .leading, spacing: 2) {
-                Text(tx.title).font(.subheadline).foregroundStyle(.white)
-                Text(tx.date, format: .dateTime.day().month().hour().minute()).font(.caption2).foregroundStyle(.white.opacity(0.5))
+                Text(tx.title).font(.subheadline).foregroundStyle(.primary)
+                Text(tx.date, format: .dateTime.day().month().hour().minute()).font(.caption2).foregroundStyle(.secondary)
             }
             Spacer()
-            Text((tx.kind == .incoming ? "+" : "−") + formatted(tx.amount)).font(.subheadline.monospacedDigit()).foregroundStyle(tx.kind == .incoming ? .green : .white)
+            Text((tx.kind == .incoming ? "+" : "−") + formatted(tx.amount)).font(.subheadline.monospacedDigit()).foregroundStyle(tx.kind == .incoming ? .green : .primary)
         }.padding(.horizontal, 14).padding(.vertical, 10)
     }
     private var iconName: String {
